@@ -1,0 +1,12 @@
+background-color: white;
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+p {
+    line-height: 0.5;
+    font-family: verdana;
+    font-size: 12px;
+}
