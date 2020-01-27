@@ -24,6 +24,7 @@ print("<h2>Результаты:</h2>")
 molarity = float(molarity)
 volume = float(volume)
 MW = float(MW)
+
 n_amount = 6 #число значащих цифр
 
 amount_mol = molarity * volume #всего моль
@@ -34,15 +35,13 @@ mass_g = round(mass_g, -int(floor(log10(abs(mass_g))))+n_amount-1)
 mass_mg = round(mass_mg, -int(floor(log10(abs(mass_mg))))+n_amount-1)
 print(mass_g, mass_mg)
 
-
-'''print('<p>GC состав = <b>%.1f %%</b></p>' % (percent_G + percent_C))
+'''
+print('<p>GC состав = <b>%.1f %%</b></p>' % (percent_G + percent_C))
 print('<p>Содержание G = <b>%.1f %%</b></p>' % (percent_G))
 print('<p>Содержание C = <b>%.1f %%</b></p>' % (percent_C))
 print('<p>Содержание A = <b>%.1f %%</b></p>' % (percent_A))
 print('<p>Содержание T = <b>%.1f %%</b></p>' % (percent_T))
 print('<p>Общая длина = <b>%i</b> нуклеотида/ов</p>' % (common_base))
 '''
-
 print("""</body>
         </html>""")
-'''
