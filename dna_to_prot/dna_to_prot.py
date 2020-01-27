@@ -12,21 +12,10 @@ print("""<!DOCTYPE HTML>
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="dna_to_prot.css">
-            <style>
-p {
-    line-height: 0.5;
-    font-family: Courier New;
-    font-size: 12px;
-    white-space:pre;
-    font-weight: bold;
-}
-            </style>
             <title>Обработка данных форм</title>
         </head>
         <body>""")
-print "<h1>Результаты</h1>"
-print "<p>Исходная последовательность ДНК: ", sequence_dna, "</p>"
-
+print("<h2>Результаты:</h2>")
 
 sequence_prot_1 = ""
 sequence_prot_2 = ""
@@ -100,14 +89,19 @@ for i in range(2, n, 3):
     if sequence_dna[i:i+3] == "GTT" or sequence_dna[i:i+3] ==  "GTC" or sequence_dna[i:i+3] ==  "GTA" or sequence_dna[i:i+3] ==  "GTG": sequence_prot_3 += "V"
     if sequence_dna[i:i+3] == "TAA" or sequence_dna[i:i+3] ==  "TGA" or sequence_dna[i:i+3] ==  "TAG": sequence_prot_3 += "*"
 
-
+print("<p><b>Исходная последовательность ДНК:</b></p>")
+for i in range(0, len(sequence_dna), 50):
+    print "<p><h3>", sequence_dna[i:i+10], " ", sequence_dna[i+10:i+20], " ", sequence_dna[i+20:i+30], " ", sequence_dna[i+30:i+40], " ", sequence_dna[i+40:i+50], "</h3></p>"
 
 print "<p>Аминокислотная последовательность по 1-ой рамке считания:</p>"
-print "<p>", sequence_prot_1, "</p>"
+for i in range(0, len(sequence_prot_1), 50):
+    print "<p><h5>", sequence_prot_1[i:i+10], " ", sequence_prot_1[i+10:i+20], " ", sequence_prot_1[i+20:i+30], " ", sequence_prot_1[i+30:i+40], " ", sequence_prot_1[i+40:i+50], "</h5></p>"
 print "<p>Аминокислотная последовательность по 2-ой рамке считания:</p>"
-print "<p>", sequence_prot_2, "</p>"
+for i in range(0, len(sequence_prot_2), 50):
+    print "<p><h5>", sequence_prot_2[i:i+10], " ", sequence_prot_2[i+10:i+20], " ", sequence_prot_2[i+20:i+30], " ", sequence_prot_2[i+30:i+40], " ", sequence_prot_2[i+40:i+50], "</h5></p>"
 print "<p>Аминокислотная последовательность по 3-ей рамке считания:</p>"
-print "<p>", sequence_prot_3, "</p>"
+for i in range(0, len(sequence_prot_3), 50):
+    print "<p><h5>", sequence_prot_3[i:i+10], " ", sequence_prot_3[i+10:i+20], " ", sequence_prot_3[i+20:i+30], " ", sequence_prot_3[i+30:i+40], " ", sequence_prot_3[i+40:i+50], "</h5></p>"
 
 
 print("""</body>
