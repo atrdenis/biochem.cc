@@ -1,28 +1,22 @@
 #!/usr/bin/python
 # coding: utf8
 import cgi
+import string
 form = cgi.FieldStorage()
 sequence = form.getfirst("sequence", "0") #Забрал данные, введенные в форму в редакторе html из панели управления
+sequence = sequence.upper()
+
+
 print("Content-type: text/html\n")
 print("""<!DOCTYPE HTML>
         <html>
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="calc.css">
-            <style>
-p {
-    line-height: 0.5;
-    font-family: Courier New;
-    font-size: 12px;
-    white-space:pre;
-    font-weight: bold;
-}
-            </style>
             <title>Обработка данных форм</title>
         </head>
         <body>""")
-print("<h1>Результаты</h1>")
-print "<p>Исходная последовательность: ", sequence, "</p>"
+print("<h2>Результаты:</h2>")
 A = 0 #Пременные для подсчета аминокислот
 R = 0
 N = 0
@@ -110,11 +104,19 @@ percentW = float(W)/float(Sum)*100
 percentY = float(Y)/float(Sum)*100
 percentV = float(V)/float(Sum)*100
 
-print "<p>Всего аминокислот:", Sum, "</p>"
-print "<p>Масса белка:", WeightMass, " Da</p>"
-print "<p>Коэффициент экстинкции на 280 нм:", Extintion, " 1/М/см</p>"
-print('<p>Поглощение на 280 нм расвора белка 1 мг/мл (0.1%%): %.2f </p>' % Absorbance_1mgml)
-print "<p>Аминокислотный состав:"
+print("<p><b>Исходная последовательность:</b></p>")
+for i in range(0, len(sequence), 50):
+    print "<p><h3>", sequence[i:i+10], " ", sequence[i+10:i+20], " ", sequence[i+20:i+30], " ", sequence[i+30:i+40], " ", sequence[i+40:i+50], "</h3></p>"
+
+
+#print('<p>Содержание G = <b>%.1f %%</b></p>' % (percent_G))
+
+
+print("<p>Всего аминокислот: <b>%i</b> </p>"  % (Sum))
+print("<p>Васса белка: <b>%.0f</b> Da </p>"  % (WeightMass))
+print("<p>Коэффициент экстинкции на 280 нм: <b>%i</b> 1/М/см</p>"  % (Extintion))
+print('<p>Поглощение на 280 нм расвора белка 1 мг/мл (0.1%%): <b>%.2f</b></p>' % Absorbance_1mgml)
+print("<p><b>Аминокислотный состав:</b></p>")
 print('<p>Ala (A)   %i\t %.1f%%</p>' % (A, percentA))
 print('<p>Arg (R)   %i\t %.1f%%</p>' % (R, percentR))
 print('<p>Asn (N)   %i\t %.1f%%</p>' % (N, percentN))
