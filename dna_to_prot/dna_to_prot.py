@@ -2,9 +2,14 @@
 # coding: utf8
 import cgi
 import string
+import re
 
 form = cgi.FieldStorage()
 sequence_dna = form.getfirst("sequence_dna", "0") #Забрал данные, введенные в форму в редакторе html из панели управления
+sequence_dna = sequence_dna.replace("\r","")
+sequence_dna = sequence_dna.replace("\n","")
+sequence_dna = sequence_dna.upper()
+sequence_dna = re.sub("[^ACTG]+", "", sequence_dna)
 
 print("Content-type: text/html\n")
 print("""<!DOCTYPE HTML>
@@ -20,8 +25,8 @@ print("<h2>Результаты:</h2>")
 sequence_prot_1 = ""
 sequence_prot_2 = ""
 sequence_prot_3 = ""
+
 n = len(sequence_dna)
-sequence_dna = sequence_dna.upper()
 for i in range(0, n, 3):
     if sequence_dna[i:i+3] == "GCT" or sequence_dna[i:i+3] ==  "GCC" or sequence_dna[i:i+3] ==  "GCA" or sequence_dna[i:i+3] ==  "GCG": sequence_prot_1 += "A"
     if sequence_dna[i:i+3] == "TTA" or sequence_dna[i:i+3] ==  "TTG" or sequence_dna[i:i+3] ==  "CTT" or sequence_dna[i:i+3] ==  "CTC" or sequence_dna[i:i+3] ==  "CTA" or sequence_dna[i:i+3] ==  "CTG": sequence_prot_1 += "L"
@@ -89,7 +94,7 @@ for i in range(2, n, 3):
     if sequence_dna[i:i+3] == "GTT" or sequence_dna[i:i+3] ==  "GTC" or sequence_dna[i:i+3] ==  "GTA" or sequence_dna[i:i+3] ==  "GTG": sequence_prot_3 += "V"
     if sequence_dna[i:i+3] == "TAA" or sequence_dna[i:i+3] ==  "TGA" or sequence_dna[i:i+3] ==  "TAG": sequence_prot_3 += "*"
 
-print("<p><b>Исходная последовательность ДНК:</b></p>")
+print "<p><b>Исходная последовательность ДНК (",n, "нуклеотидов):</b></p>"
 for i in range(0, len(sequence_dna), 50):
     print "<p><h3>", sequence_dna[i:i+10], " ", sequence_dna[i+10:i+20], " ", sequence_dna[i+20:i+30], " ", sequence_dna[i+30:i+40], " ", sequence_dna[i+40:i+50], "</h3></p>"
 
