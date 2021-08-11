@@ -1,1 +1,1 @@
-Здесь лежат файлы, которые создаются для сайта biochem.cc
+Here files for biochem.cc
